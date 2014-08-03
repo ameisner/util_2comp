@@ -36,16 +36,19 @@ function par_struc_2comp
   beta1 = 1.63
   beta2 = 2.82
 
+  nu0 = 2997.92458 ; GHz
+
   tau2ebv = 2.46e3
   offs_tau_ebv = 0.006 ; mag E(B-V)
   
-  par = {fname        : fname,       $ 
-         f1           : f1,          $ 
-         q1_over_q2   : q1_over_q2,  $
-         beta1        : beta1,       $
-         beta2        : beta2,       $
-         tau2ebv      : tau2ebv,     $
-         offs_tau_ebv : offs_tau_ebv  }
+  par = {fname        : fname,        $ 
+         f1           : f1,           $ 
+         q1_over_q2   : q1_over_q2,   $
+         beta1        : beta1,        $
+         beta2        : beta2,        $
+         tau2ebv      : tau2ebv,      $
+         offs_tau_ebv : offs_tau_ebv, $
+         nu0          : nu0            }
 
   return, par
 
