@@ -38,9 +38,14 @@ function par_struc_2comp
 
   nu0 = 2997.92458 ; GHz
 
+  nu_ref = 545.
+
   tau2ebv = 2.46e3
   offs_tau_ebv = 0.006 ; mag E(B-V)
   
+; ----- HEALPix Nside of results summary file
+  nside = 2048
+
   par = {fname        : fname,        $ 
          f1           : f1,           $ 
          q1_over_q2   : q1_over_q2,   $
@@ -48,7 +53,9 @@ function par_struc_2comp
          beta2        : beta2,        $
          tau2ebv      : tau2ebv,      $
          offs_tau_ebv : offs_tau_ebv, $
-         nu0          : nu0            }
+         nu0          : nu0,          $
+         nu_ref       : nu_ref,       $ 
+         nside        : nside          }
 
   return, par
 
