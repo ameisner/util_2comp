@@ -41,7 +41,7 @@ function par_struc_2comp
   nu_ref = 545.
 
   tau2ebv = 2.46e3
-  offs_tau_ebv = 0.006 ; mag E(B-V)
+  offs_tau_ebv = 0.0006 ; mag E(B-V)
   
 ; ----- HEALPix Nside of results summary file
   nside = 2048
