@@ -50,7 +50,7 @@ function getval_2comp, nu=nu, ind=ind, ebv=ebv
       T2 = str[ind].T2     ; memory waste
 ; ----- if nu keyword doesn't specify frequency, then assume 545 GHz desired
       if ~keyword_set(nu) then nu = par.nu_ref
-      vals = (nu EQ nuref) ?  iref : pred_spec(nu, T2, nu_ref, i_ref)
+      vals = (nu EQ par.nu_ref) ?  iref : pred_spec(nu, T2, par.nu_ref, iref)
   endif else begin
       vals = par.tau2ebv*str[ind].tau545 + par.offs_tau_ebv
   endelse
