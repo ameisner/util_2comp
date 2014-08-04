@@ -6,7 +6,7 @@
 ;   compute cold dust temperature based on hot dust temperature
 ;
 ; CALLING SEQUENCE:
-;   T1 = get_t1(T2)
+;   T1 = get_t1(T2, q1_over_q2=, beta1=, beta2=)
 ;
 ; INPUTS:
 ;   T2 - temperature of hot dust component, K

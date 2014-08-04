@@ -6,13 +6,21 @@
 ;   predict emission or extinction with Planck-based two-component model
 ;
 ; CALLING SEQUENCE:
-;   
+;   vals = getval_2comp(nu=, ind=, ebv=)
+;
 ; INPUTS:
 ;   
 ; OPTIONAL INPUTS:
-;   
+;   nu  - if retrieving emission predictions, gives the frequency or 
+;         frequencies at which to evaluate two-component model,
+;         default 545 GHz
+;   ind - HEALPix indices for which predictions desired, if not set then
+;         full-sky predictions are returned
+;
 ; KEYWORDS:
-;   
+;   ebv - if set, retrieve reddening predictions instead of emission 
+;         predictions
+;
 ; OUTPUTS:
 ;   vals - by default, predicted emission values in MJy/sr but if ebv keyword 
 ;          set, output is reddening in mag E(B-v)
@@ -22,9 +30,6 @@
 ; EXAMPLES:
 ;   
 ; COMMENTS:
-;   what about nu input in the case of reddening ... doesn't really
-;   seem sensible ... maybe make nu also a keyword parameter
-;
 ;
 ; REVISION HISTORY:
 ;   2014-Aug-3 - Aaron Meisner
@@ -33,12 +38,9 @@ function getval_2comp, nu=nu, ind=ind, ebv=ebv
 
   par = par_struc_2comp()
 
-; ----- still need to test case of single-element ind special case of
-;       ind = 0
+; ----- still need to test case of single-element ind special case of ind = 0
   if (n_elements(ind) EQ 0) then ind = lindgen(12L*par.nside*par.nside)
 
-
-; ----- is it bad for an environment variable to have a number in it???
   fname = concat_dir(getenv('ETC_2COMP'), par.fname)
 
 ; --- is there a way to only read in the necessary field(s) as opposed

@@ -28,9 +28,10 @@
 ;----------------------------------------------------------------------
 function par_struc_2comp
 
-; ----- what about the directory that this file is in?
+; ----- name of results file
   fname = 'planck_2comp.fits'
 
+; ----- Planck+DIRBE best-fit two-component model global parameters
   f1 = 0.0485
   q1_over_q2 = 8.219
   beta1 = 1.63
@@ -38,9 +39,11 @@ function par_struc_2comp
 
   nu0 = 2997.92458 ; GHz
 
-  nu_ref = 545.
+  nu_ref = 545. ; GHz
 
+; ----- conversion factor from 545 GHz optical depth to E(B-V)
   tau2ebv = 2.46e3
+
   offs_tau_ebv = 0.0006 ; mag E(B-V)
   
 ; ----- HEALPix Nside of results summary file

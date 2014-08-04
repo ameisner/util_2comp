@@ -7,7 +7,7 @@
 ;
 ; CALLING SEQUENCE:
 ;   inten = i_2comp(nu, T2, inten1=, inten2=, f1=, beta1=, beta2=,
-;       q1_over_q=)
+;       q1_over_q2=)
 ;
 ; INPUTS:
 ;   nu - frequencies at which to evaluate the model, GHz
@@ -46,8 +46,8 @@ function i_2comp, nu, T2, inten1=inten1, inten2=inten2, f1=f1, $
   par = par_struc_2comp()
 
   if ~keyword_set(f1) then f1 = par.f1
-  if ~keyword_set(beta1) then beta1 = par.beta1 ; beta1
-  if ~keyword_set(beta2) then beta2 = par.beta2 ; beta2
+  if ~keyword_set(beta1) then beta1 = par.beta1
+  if ~keyword_set(beta2) then beta2 = par.beta2
   if ~keyword_set(q1_over_q2) then q1_over_q2 = par.q1_over_q2
 
   nu0 = par.nu_ref
