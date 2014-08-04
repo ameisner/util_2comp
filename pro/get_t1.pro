@@ -33,9 +33,11 @@
 ;----------------------------------------------------------------------
 function get_t1, T2, q1_over_q2=q1_over_q2, beta1=beta1, beta2=beta2
 
-  if ~keyword_set(q1_over_q2) then q1_over_q2 = 13.
-  if ~keyword_set(beta1) then beta1 = 1.67
-  if ~keyword_set(beta2) then beta2 = 2.7
+  par = par_struc_2comp()
+
+  if ~keyword_set(q1_over_q2) then q1_over_q2 = par.q1_over_q2
+  if ~keyword_set(beta1) then beta1 = par.beta1
+  if ~keyword_set(beta2) then beta2 = par.beta2
 
   hnu0_over_kb = 143.977300455 ; h*nu_0/k_B, MKS
 
