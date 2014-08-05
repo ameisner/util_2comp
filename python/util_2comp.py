@@ -82,15 +82,15 @@ def i_2comp(nu, T2, f1=par_struc_2comp()['f1'],
 
     T1 = get_t1(T2, q1_over_q2=q1_over_q2, beta1=beta1, beta2=beta2)
 
-    inten1 = f1*q1_over_q2*((nu/nu0)**(3+beta1))*(1./(math.exp(hk*nu/T1)-1))
-    inten2 = (1-f1)*((nu/nu0)**(3+beta2))*(1./(math.exp(hk*nu/T2)-1))
+    inten1 = f1*q1_over_q2*((nu/nu0)**(3+beta1))*(1/(np.exp(hk*nu/T1)-1))
+    inten2 = (1-f1)*((nu/nu0)**(3+beta2))*(1./(np.exp(hk*nu/T2)-1))
 
     return (inten1+inten2), inten1, inten2
 
 def pred_spec(nu, T2, nu_ref, i_ref):
 
-    m_ref = i_2comp(nu_ref, T2)
-    m_nu = i_2comp(nu, T2)
+    m_ref, _, __ = i_2comp(nu_ref, T2)
+    m_nu, _, __  = i_2comp(nu, T2)
 
     pred = i_ref*(m_nu/m_ref)
 
@@ -101,10 +101,6 @@ def getval_2comp(nu=par_struc_2comp()['nu_ref'],
 
     par = par_struc_2comp()
 
-# ----- still need to test case of single-element ind special case of ind = 0
-    if ind is None:
-        ind = np.arange(12L*par['nside']*par['nside'])
-
     fname = os.path.join(os.environ['ETC_2COMP'], par['fname'])
 
 # ----- is there a way to only read in the necessary field(s) as opposed
@@ -112,7 +108,9 @@ def getval_2comp(nu=par_struc_2comp()['nu_ref'],
     hdus = pyfits.open(fname)
     tab = hdus[1].data # should cache this so it's only read once
 
-    tab = tab[ind] # does this work ??
+# ----- still need to test case of single-element ind special case of ind = 0
+    if ind is not None:
+        tab = tab[ind] # checks on input ind ?
 
     if not ebv:
         iref = tab['m545'] # memory waste
@@ -120,6 +118,6 @@ def getval_2comp(nu=par_struc_2comp()['nu_ref'],
 # ----- if nu keyword doesn't specify frequency, then assume 545 GHz desired
         vals = (iref if (nu == par['nu_ref']) else pred_spec(nu, T2, par['nu_ref'], iref))
     else:
-        vals = par['tau2ebv']*str['tau545'] + par['offs_tau_ebv']
+        vals = par['tau2ebv']*tab['tau545'] + par['offs_tau_ebv']
 
     return vals
