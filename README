@@ -1,0 +1,65 @@
+General
+-----------------------------------------
+We are releasing our Planck-based two-component fit results as a set
+of nested order Nside=2048 HEALPix maps in Galactic coordinates. These maps, 
+which include 545 GHz, hot dust temperature, and associated uncertainties, are 
+contained in the file planck_2comp.fits. Our data release includes software
+to obtain reddening and emission predictions. This code is contained
+in the file util_2comp.tar.gz, which includes IDL and Python implementations.
+
+
+Notes
+------------------------------------------
+We have conducted a thorough comparison of the values output by the IDL/Python
+software tools, and verified that both return identical emission/extinction
+predictions for identical queries.
+
+
+Software Download
+-----------------------------------------
+After unpacking util_2comp.tar.gz, you should see the following directory
+structure.
+
+$ tree -d util_2comp
+util_2comp
+|-- pro
+`-- python
+
+util_2comp/pro contains the IDL utilities. util_2comp/python contains the 
+Python utilities.
+
+
+Environment
+------------------------------------------
+Both the Python and IDL implementations require that the ETC_2COMP environment 
+variable be set to the directory containing the Planck-based two-component 
+fit results summary file, planck_2comp.fits.
+
+
+IDL
+-----------------------------------------
+Include util_2comp/pro in your IDL_PATH.
+
+IDL> vals = getval_2comp(nu=150)
+
+In this example, the return value is a full-sky, Nside=2048 HEALPix map
+of predicted 150 GHz thermal dust emission in MJy/sr. See the header 
+documentation for further options and details.
+
+The IDL implementation has been tested with IDL 7.1.1, 8.1, 8.2.2 and IDLUTILS
+v5_4_24.
+
+
+Python
+-----------------------------------------
+Include util_2comp/python in your PYTHONPATH.
+
+>> import util_2comp
+>> vals = util_2comp.getval_2comp(nu=150)
+
+In this example, the return value is a NumPy array containing the full-sky, 
+Nside=2048 HEALPix map of predicted 150 GHz thermal dust emission in MJy/sr. 
+See the docstrings for further options and details.
+
+The Python implementation has been tested with Python 2.7.1, NumPy 1.6.0, and 
+PyFITS 2.4.0.
