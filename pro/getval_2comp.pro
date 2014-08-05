@@ -23,7 +23,7 @@
 ;
 ; OUTPUTS:
 ;   vals - by default, predicted emission values in MJy/sr but if ebv keyword 
-;          set, output is reddening in mag E(B-v)
+;          set, output is reddening in mag E(B-V)
 ;
 ; OPTIONAL OUTPUTS:
 ;   
