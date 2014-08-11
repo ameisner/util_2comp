@@ -120,7 +120,7 @@ def i_2comp(nu, T2, f1=par_struc_2comp()['f1'],
     """
     par = par_struc_2comp()
 
-    nu0 = par['nu_ref']
+    nu0 = par['nu0']
 
     hk = 0.0479924335 
 
