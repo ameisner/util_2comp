@@ -50,7 +50,7 @@ function i_2comp, nu, T2, inten1=inten1, inten2=inten2, f1=f1, $
   if ~keyword_set(beta2) then beta2 = par.beta2
   if ~keyword_set(q1_over_q2) then q1_over_q2 = par.q1_over_q2
 
-  nu0 = par.nu_ref
+  nu0 = par.nu0
 
   hk = 0.0479924335 
 
