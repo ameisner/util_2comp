@@ -131,7 +131,7 @@ def i_2comp(nu, T2, f1=par_struc_2comp()['f1'],
 
     return (inten1+inten2), inten1, inten2
 
-def pred_spec(nu, T2, nu_ref, i_ref):
+def pred_spec(nu, T2, nu_ref, i_ref, sig_ref):
     """
     Make two-component emission predictions
 
@@ -147,11 +147,14 @@ def pred_spec(nu, T2, nu_ref, i_ref):
     m_ref, _, __ = i_2comp(nu_ref, T2)
     m_nu, _, __  = i_2comp(nu, T2)
 
-    pred = i_ref*(m_nu/m_ref)
+    fac = (m_nu/m_ref)
+    pred = i_ref*fac
 
-    return pred
+    sig_m = sig_ref*fac
 
-def getval_2comp(nu=par_struc_2comp()['nu_ref'], ind=None, ebv=False):
+    return pred, sig_m
+
+def getval_2comp(nu=par_struc_2comp()['nu_ref'], ind=None, ebv=False, unc=False):
     """
     Predict emission or extinction with Planck-based two-component model
     
@@ -181,11 +184,14 @@ def getval_2comp(nu=par_struc_2comp()['nu_ref'], ind=None, ebv=False):
     if not ebv:
         iref = tab['m545'] # memory waste
         T2 = tab['T2']     # memory waste
+        sig_ref = tab['sig_m545']
 # ----- if nu keyword doesn't specify frequency, then assume 545 GHz desired
-        vals = (iref if (nu == par['nu_ref']) else pred_spec(nu, T2,
-                                                             par['nu_ref'],
-                                                             iref))
+        vals, sig_vals = pred_spec(nu, T2, par['nu_ref'], iref, sig_ref)
     else:
         vals = par['tau2ebv']*tab['tau545'] + par['offs_tau_ebv']
+        if unc: sig_vals = par['tau2ebv']*tab['sig_tau545']
 
-    return vals
+    if unc:
+        return vals, sig_vals
+    else:
+        return vals
