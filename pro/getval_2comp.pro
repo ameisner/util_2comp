@@ -24,6 +24,7 @@
 ; OUTPUTS:
 ;   vals - by default, predicted emission values in MJy/sr but if ebv keyword 
 ;          set, output is reddening in mag E(B-V)
+;   unc - retrieve 1 sigma uncertainty on output values
 ;
 ; OPTIONAL OUTPUTS:
 ;   
@@ -34,7 +35,7 @@
 ; REVISION HISTORY:
 ;   2014-Aug-3 - Aaron Meisner
 ;----------------------------------------------------------------------
-function getval_2comp, nu=nu, ind=ind, ebv=ebv
+function getval_2comp, nu=nu, ind=ind, ebv=ebv, unc=unc
 
   par = par_struc_2comp()
 
@@ -52,9 +53,14 @@ function getval_2comp, nu=nu, ind=ind, ebv=ebv
       T2 = str[ind].T2     ; memory waste
 ; ----- if nu keyword doesn't specify frequency, then assume 545 GHz desired
       if ~keyword_set(nu) then nu = par.nu_ref
-      vals = (nu EQ par.nu_ref) ?  iref : pred_spec(nu, T2, par.nu_ref, iref)
+      vals = (nu EQ par.nu_ref) ?  iref : $ 
+          pred_spec(nu, T2, par.nu_ref, iref, str[ind].sig_m545, sig_m)
+      if arg_present(unc) then begin
+          unc = (nu EQ par.nu_ref) ? str[ind].sig_m545 : sig_m
+      endif
   endif else begin
       vals = par.tau2ebv*str[ind].tau545 + par.offs_tau_ebv
+      if arg_present(unc) then unc = par.tau2ebv*str[ind].sig_tau545
   endelse
 
   return, vals
