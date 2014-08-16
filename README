@@ -1,12 +1,11 @@
 General
 -----------------------------------------
-We are releasing our Planck-based two-component fit results as a set of 
-full-sky nested order Nside=2048 HEALPix maps in Galactic coordinates. These 
-maps, which include, for example, 545 GHz optical depth, hot dust temperature, 
-and associated uncertainties, are contained in the file planck_2comp.fits. We 
-are also releasing software to obtain reddening and emission predictions based 
-on this summary file. This code is contained in the file util_2comp.tar.gz, 
-which includes IDL and Python implementations.
+We are releasing our Planck-based two-component fit results as a set
+of nested order Nside=2048 HEALPix maps in Galactic coordinates. These maps, 
+which include 545 GHz, hot dust temperature, and associated uncertainties, are 
+contained in the file planck_2comp.fits. Our data release includes software
+to obtain reddening and emission predictions. This code is contained
+in the file util_2comp.tar.gz, which includes IDL and Python implementations.
 
 
 Notes
