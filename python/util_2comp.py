@@ -22,9 +22,9 @@ def par_struc_2comp():
     nu_ref = 545. # GHz
     
 # ----- conversion factor from 545 GHz optical depth to E(B-V)
-    tau2ebv = 2.46e3
+    tau2ebv = 2.6244472e3
     
-    offs_tau_ebv = 0.0006 # mag E(B-V)
+    offs_tau_ebv = -0.00260618 # mag E(B-V)
     
 # ----- HEALPix Nside of results summary file
     nside = 2048
