@@ -1,6 +1,5 @@
 # autosaves
-pro/*.pro~
-python/*.py~
+*~
 
-# compile Python modules
+# compiled Python modules
 python/*.pyc

@@ -1,11 +1,12 @@
 General
 -----------------------------------------
-We are releasing our Planck-based two-component fit results as a set
-of nested order Nside=2048 HEALPix maps in Galactic coordinates. These maps, 
-which include 545 GHz, hot dust temperature, and associated uncertainties, are 
-contained in the file planck_2comp.fits. Our data release includes software
-to obtain reddening and emission predictions. This code is contained
-in the file util_2comp.tar.gz, which includes IDL and Python implementations.
+We are releasing our Planck-based two-component fit results as a set of nested 
+order Nside=2048 HEALPix maps in Galactic coordinates. These maps, which 
+include 545 GHz optical depth, hot dust temperature, and associated 
+uncertainties, are contained in the file planck_2comp.fits. Our data release 
+also includes software to obtain reddening and emission predictions based on
+this results summary file. The util_2comp.tar.gz archive contains IDL and 
+Python implementations of the emission/reddening prediction software.
 
 
 Notes
@@ -25,8 +26,8 @@ util_2comp
 |-- pro
 `-- python
 
-util_2comp/pro contains the IDL utilities. util_2comp/python contains the 
-Python utilities.
+util_2comp/pro contains the IDL software utilities. util_2comp/python contains 
+the Python software utilities.
 
 
 Environment
@@ -40,7 +41,7 @@ IDL
 -----------------------------------------
 Include util_2comp/pro in your IDL_PATH.
 
-IDL> vals = getval_2comp(nu=150)
+IDL> pred = getval_2comp(nu=150)
 
 In this example, the return value is a full-sky, Nside=2048 HEALPix map
 of predicted 150 GHz thermal dust emission in MJy/sr. See the header 
@@ -55,9 +56,9 @@ Python
 Include util_2comp/python in your PYTHONPATH.
 
 >> import util_2comp
->> vals = util_2comp.getval_2comp(nu=150)
+>> pred = util_2comp.getval_2comp(nu=150)
 
-In this example, the return value is a NumPy array containing the full-sky, 
+In this example, the return value is a NumPy array containing a full-sky, 
 Nside=2048 HEALPix map of predicted 150 GHz thermal dust emission in MJy/sr. 
 See the docstrings for further options and details.
 
