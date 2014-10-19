@@ -6,7 +6,7 @@
 ;   make two-component emission predictions
 ;
 ; CALLING SEQUENCE:
-;   pred = pred_spec(nu, T2, nu_ref, i_ref)
+;   pred = pred_spec(nu, T2, nu_ref, i_ref, sig_ref, sig_m)
 ;
 ; INPUTS:
 ;   nu     - frequency or frequencies at which emission predictions  are 

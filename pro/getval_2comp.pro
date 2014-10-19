@@ -6,7 +6,7 @@
 ;   predict emission or extinction with Planck-based two-component model
 ;
 ; CALLING SEQUENCE:
-;   vals = getval_2comp(nu=, ind=, ebv=)
+;   vals = getval_2comp(nu=, ind=, ebv=, unc=)
 ;
 ; INPUTS:
 ;   
@@ -24,10 +24,10 @@
 ; OUTPUTS:
 ;   vals - by default, predicted emission values in MJy/sr but if ebv keyword 
 ;          set, output is reddening in mag E(B-V)
-;   unc - retrieve 1 sigma uncertainty on output values
 ;
 ; OPTIONAL OUTPUTS:
-;   
+;   unc - retrieve 1 sigma uncertainties on output values
+;
 ; EXAMPLES:
 ;   
 ; COMMENTS:
