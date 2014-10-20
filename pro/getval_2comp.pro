@@ -38,6 +38,7 @@
 function getval_2comp, nu=nu, ind=ind, ebv=ebv, unc=unc
 
   par = par_struc_2comp()
+  check_freq, nu
 
 ; ----- still need to test case of single-element ind special case of ind = 0
   if (n_elements(ind) EQ 0) then ind = lindgen(12L*par.nside*par.nside)
