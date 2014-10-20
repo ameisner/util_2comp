@@ -20,7 +20,11 @@ def par_struc_2comp():
     nu0 = 2997.92458 # GHz
     
     nu_ref = 545. # GHz
-    
+
+# ----- boundaries for recommended range of two-component model applicability
+    nu_min = 100  # GHz
+    nu_max = 3000 # GHz
+
 # ----- conversion factor from 545 GHz optical depth to E(B-V)
     tau2ebv = 2.6244472e3
     
@@ -38,6 +42,8 @@ def par_struc_2comp():
            'offs_tau_ebv' : offs_tau_ebv,
            'nu0'          : nu0,
            'nu_ref'       : nu_ref,
+           'nu_min'       : nu_min,
+           'nu_max'       : nu_max,
            'nside'        : nside        }
     
     return par
