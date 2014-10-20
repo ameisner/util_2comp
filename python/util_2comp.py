@@ -160,6 +160,20 @@ def pred_spec(nu, T2, nu_ref, i_ref, sig_ref):
 
     return pred, sig_m
 
+def check_freq(nu):
+    """
+    Check user input frequencies and issue warning when appropriate
+
+    Inputs:
+        nu - frequency or array of frequencies, assumed to be in GHz
+    """
+    
+    par = par_struc_2comp()
+    if (np.max(nu)>par['nu_max']) or (np.min(nu)<par['nu_min']):
+        print 'WARNING : frequency out of recommended range of model applicability'
+        print '          note that input frequencies are expected to be in GHz'
+    
+
 def getval_2comp(nu=par_struc_2comp()['nu_ref'], ind=None, ebv=False, unc=False):
     """
     Predict emission or extinction with Planck-based two-component model
@@ -175,6 +189,8 @@ def getval_2comp(nu=par_struc_2comp()['nu_ref'], ind=None, ebv=False, unc=False)
     """
 
     par = par_struc_2comp()
+
+    check_freq(nu)
 
     fname = os.path.join(os.environ['ETC_2COMP'], par['fname'])
 
