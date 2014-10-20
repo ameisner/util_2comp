@@ -6,7 +6,9 @@ include 545 GHz optical depth, hot dust temperature, and associated
 uncertainties, are contained in the file planck_2comp.fits. Our data release 
 also includes software to obtain reddening and emission predictions based on
 this results summary file. The util_2comp.tar.gz archive contains IDL and 
-Python implementations of the emission/reddening prediction software.
+Python implementations of the emission/reddening prediction software. We do
+not recommend extrapolating our two-component emission model to frequencies 
+outside of the 100-3000 GHz range over which the model has been fit.
 
 
 Notes
