@@ -90,7 +90,16 @@ end
 
 pro test_one_pix_nu_ref
 
-; test the case of a single pixel emission prediction at a reference frequency
+; test the case of a single pixel emission prediction at reference frequency
+
+  pix = 10 ; arb
+
+  pred = getval_2comp(ind=pix)
+
+  pred_full = getval_2comp()
+
+  assert, n_elements(pred) EQ n_elements(pix)
+  assert, pred EQ pred_full[pix]
 
 end
 
@@ -114,6 +123,7 @@ pro tests
   test_em_ref
   test_em_ref_partial
   test_em_nu_partial
+  test_one_pix_nu_ref
 
 end
 
