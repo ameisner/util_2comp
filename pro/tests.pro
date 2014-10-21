@@ -110,13 +110,6 @@ pro test_em_nu
 
 end
 
-pro test_unc_nu
-
-; test that uncertainty and emission are scaled appropriately to 
-; non-reference frequency
-
-end
-
 pro test_em_nu_partial
 
 ; test emission prediction again at non-reference frequency, but for some
@@ -200,9 +193,45 @@ pro test_index_0
 
 ; case of ind=0
 
+  pix = 0
+
+  em = getval_2comp(ind=pix)
+  em_all = getval_2comp()
+
+  assert, n_elements(em) EQ 1
+  assert, em_all[pix] EQ em
+
+  ebv = getval_2comp(ind=pix, /ebv)
+  ebv_all = getval_2comp(/ebv)
+
+  assert, n_elements(ebv) EQ 1
+  assert, ebv_all[pix] EQ ebv
+
 end
 
-; repeat all unit tests for reddening rather than emission ?
+pro test_ebv
+
+; test full-sky reddening query
+
+  par = par_struc_2comp()
+  ebv = getval_2comp(/ebv)
+
+  assert, n_elements(ebv) EQ (12L*par.nside*par.nside)
+
+end
+
+pro test_ebv_partial
+
+; test reddening query for some subset of pixels
+
+  pix = 2048*lindgen(12L*2048)
+  ebv = getval_2comp(/ebv, ind=pix)
+  ebv_full = getval_2comp(/ebv)
+
+  assert, n_elements(pix) EQ n_elements(ebv)
+  assert, total(ebv NE ebv_full[pix]) EQ 0
+
+end
 
 ; tests for case in which frequencies and pixels are arrays of same length?
 
@@ -220,5 +249,8 @@ pro tests
   test_em_nu
   test_rat_em_unc
   test_multifreq
+  test_ebv
+  test_ebv_partial
+  test_index_0
 
 end
