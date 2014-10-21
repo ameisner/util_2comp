@@ -107,6 +107,17 @@ pro test_one_pix_one_freq
 
 ; emission prediction for a single pixel at a single non-reference frequency
 
+  pix = 10000000 ; arb
+
+  nu_test = 353. ; arb
+
+  pred = getval_2comp(ind=pix, nu=nu_test)
+
+  pred_full = getval_2comp(nu=nu_test)
+
+  assert, n_elements(pred) EQ n_elements(pix)
+  assert, pred EQ pred_full[pix]
+
 end
 
 ; repeat all unit tests for reddening rather than emission ?
@@ -124,6 +135,6 @@ pro tests
   test_em_ref_partial
   test_em_nu_partial
   test_one_pix_nu_ref
+  test_one_pix_one_freq
 
 end
-
