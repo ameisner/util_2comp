@@ -95,8 +95,25 @@ end
 
 pro test_em_nu
 
-; test emission prediction and its uncertainty at frequency other than
-; reference frequency
+; test emission prediction at non-reference frequency
+
+  nu = 353. ; arb.
+
+  par = par_struc_2comp()
+  pred = getval_2comp(nu=nu)
+
+  fname = concat_dir(getenv('ETC_2COMP'), par.fname)
+  str = mrdfits(fname, 1)
+
+  assert, n_elements(pred) EQ n_elements(str.m545)
+  assert, total(pred EQ str.m545) EQ 0
+
+end
+
+pro test_unc_nu
+
+; test that uncertainty and emission are scaled appropriately to 
+; non-reference frequency
 
 end
 
@@ -115,12 +132,6 @@ pro test_em_nu_partial
 
   assert, n_elements(pred) EQ n_elements(pix)
   assert, total(pred NE pred_full[pix]) EQ 0
-
-end
-
-pro test_em_no_unc
-
-; test the case of emission prediction with no uncertainty requested
 
 end
 
@@ -174,5 +185,6 @@ pro tests
   test_one_pix_one_freq
   test_unc_ref
   test_unc_ref_partial
+  test_em_nu
 
 end
