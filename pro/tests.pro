@@ -27,8 +27,7 @@
 ;----------------------------------------------------------------------
 pro test_em_ref
 
-; test that reference frequency emission prediction and its uncertainty
-; are returned properly
+; test that reference frequency emission prediction is returned properly
 
   par = par_struc_2comp()
   pred = getval_2comp()
@@ -36,6 +35,23 @@ pro test_em_ref
   str = mrdfits(fname, 1)
   assert, n_elements(pred) EQ n_elements(str.m545)
   assert, total(str.m545 NE pred) EQ 0
+
+end
+
+pro test_unc_ref
+
+; test that reference frequency uncertainty prediction is returned properly
+
+  par = par_struc_2comp()
+  pred = getval_2comp(unc=unc)
+  fname = concat_dir(getenv('ETC_2COMP'), par.fname)
+  str = mrdfits(fname, 1)
+
+  assert, n_elements(pred) EQ n_elements(str.m545)
+  assert, total(str.m545 NE pred) EQ 0
+
+  assert, n_elements(unc) EQ n_elements(str.sig_m545)
+  assert, total(str.sig_m545 NE unc) EQ 0
 
 end
 
@@ -136,5 +152,6 @@ pro tests
   test_em_nu_partial
   test_one_pix_nu_ref
   test_one_pix_one_freq
+  test_unc_ref
 
 end
