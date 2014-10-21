@@ -182,10 +182,27 @@ pro test_rat_em_unc
 
 end
 
-; repeat all unit tests for reddening rather than emission ?
+pro test_multifreq
 
-; tests for case in which single pixel requested, but for multiple freqs
-; (this only can apply to emission predictions)
+; test case of single-pixel, multi-frequency emission predictions
+
+  nu = 150. + findgen(2800) ; arb
+  ind = 1000000 ; arb
+
+  pred = getval_2comp(nu=nu, ind=ind, unc=unc)
+
+  assert, n_elements(pred) EQ n_elements(nu)
+  assert, n_elements(unc) EQ n_elements(nu)
+
+end
+
+pro test_index_0
+
+; case of ind=0
+
+end
+
+; repeat all unit tests for reddening rather than emission ?
 
 ; tests for case in which frequencies and pixels are arrays of same length?
 
@@ -202,5 +219,6 @@ pro tests
   test_unc_ref_partial
   test_em_nu
   test_rat_em_unc
+  test_multifreq
 
 end
