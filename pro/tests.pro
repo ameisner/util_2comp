@@ -167,6 +167,21 @@ pro test_one_pix_one_freq
 
 end
 
+pro test_rat_em_unc
+
+; test that ratio of predicted emission to its uncertainty scales properly
+
+  pred_ref = getval_2comp(unc=unc_ref)
+
+  nu_test = 1250. ; arb
+  pred = getval_2comp(nu=nu_test, unc=unc_test)
+
+  tol = 1e-6
+
+  assert, max(abs((unc_test/pred)-(unc_ref/pred_ref))) LT tol
+
+end
+
 ; repeat all unit tests for reddening rather than emission ?
 
 ; tests for case in which single pixel requested, but for multiple freqs
@@ -186,5 +201,6 @@ pro tests
   test_unc_ref
   test_unc_ref_partial
   test_em_nu
+  test_rat_em_unc
 
 end
