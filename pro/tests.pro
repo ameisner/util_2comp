@@ -40,7 +40,7 @@ end
 
 pro test_unc_ref
 
-; test that reference frequency uncertainty prediction is returned properly
+; test that reference frequency emission uncertainty is returned properly
 
   par = par_struc_2comp()
   pred = getval_2comp(unc=unc)
@@ -70,6 +70,26 @@ pro test_em_ref_partial
 
   assert, n_elements(pred) EQ n_elements(pix)
   assert, total(pred NE str[pix].m545) EQ 0
+
+end
+
+pro test_unc_ref_partial
+
+; test reference frequency emission uncertainty for some subregion of sky
+
+  pix = lindgen(2048L*2048)*12
+
+  par = par_struc_2comp()
+  pred = getval_2comp(ind=pix, unc=unc)
+
+  fname = concat_dir(getenv('ETC_2COMP'), par.fname)
+  str = mrdfits(fname, 1)
+
+  assert, n_elements(pred) EQ n_elements(pix)
+  assert, total(pred NE str[pix].m545) EQ 0
+
+  assert, n_elements(unc) EQ n_elements(pix)
+  assert, total(unc NE str[pix].sig_m545) EQ 0
 
 end
 
@@ -153,5 +173,6 @@ pro tests
   test_one_pix_nu_ref
   test_one_pix_one_freq
   test_unc_ref
+  test_unc_ref_partial
 
 end
