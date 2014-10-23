@@ -182,7 +182,8 @@ def getval_2comp(nu=par_struc_2comp()['nu_ref'], ind=None, ebv=False, unc=False)
         nu  - if retrieving emission predictions, gives the frequency or
               frequencies at which to evaluate two-component model,
               default 545 GHz
-        ind - HEALPix indices for which predictions desired, if not set then
+        ind - HEALPix indices (nested order) for which predictions desired, if
+              not set then
               full-sky predictions are returned
         ebv - if True, retrieve reddening predictions instead of emission
               predictions

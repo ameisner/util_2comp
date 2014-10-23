@@ -48,12 +48,10 @@ function getval_2comp, nu=nu, ind=ind, ebv=ebv, unc=unc
   str = mrdfits(fname, 1, rows=ind)
 
   if ~keyword_set(ebv) then begin
-      iref = str.m545 ; memory waste
-      T2 = str.T2     ; memory waste
 ; ----- if nu keyword doesn't specify frequency, then assume 545 GHz desired
       if ~keyword_set(nu) then nu = par.nu_ref
-      vals = ((n_elements(nu) EQ 1) && (nu EQ par.nu_ref)) ?  iref : $ 
-          pred_spec(nu, T2, par.nu_ref, iref, str.sig_m545, sig_m)
+      vals = ((n_elements(nu) EQ 1) && (nu EQ par.nu_ref)) ?  str.m545 : $ 
+          pred_spec(nu, str.T2, par.nu_ref, str.m545, str.sig_m545, sig_m)
       if arg_present(unc) then begin
           unc = ((n_elements(nu) EQ 1) && (nu EQ par.nu_ref)) ? $ 
               str.sig_m545 : sig_m
