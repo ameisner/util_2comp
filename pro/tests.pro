@@ -60,9 +60,8 @@ pro test_em_ref_partial
 ; test reference frequency emission prediction again, but for some
 ; subregion of sky
 
-  pix = lindgen(2048L*2048)*12
-
   par = par_struc_2comp()
+  pix = lindgen(long(par.nside)*par.nside)*12
   pred = getval_2comp(ind=pix)
 
   fname = concat_dir(getenv('ETC_2COMP'), par.fname)
@@ -77,9 +76,8 @@ pro test_unc_ref_partial
 
 ; test reference frequency emission uncertainty for some subregion of sky
 
-  pix = lindgen(2048L*2048)*12
-
   par = par_struc_2comp()
+  pix = lindgen(long(par.nside)*par.nside)*12
   pred = getval_2comp(ind=pix, unc=unc)
 
   fname = concat_dir(getenv('ETC_2COMP'), par.fname)
@@ -115,7 +113,8 @@ pro test_em_nu_partial
 ; test emission prediction again at non-reference frequency, but for some
 ; subregion of sky
 
-  pix = lindgen(2048L*2048)*12
+  par = par_struc_2comp()
+  pix = lindgen(long(par.nside)*par.nside)*12
 
   nu_test = 857. ; arb
 
@@ -224,7 +223,8 @@ pro test_ebv_partial
 
 ; test reddening query for some subset of pixels
 
-  pix = 2048*lindgen(12L*2048)
+  par = par_struc_2comp()
+  pix = long(par.nside)*lindgen(12L*par.nside)
   ebv = getval_2comp(/ebv, ind=pix)
   ebv_full = getval_2comp(/ebv)
 
