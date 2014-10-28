@@ -205,9 +205,9 @@ def getval_2comp(nu=par_struc_2comp()['nu_ref'], ind=None, ebv=False, unc=False)
         tab = tab[ind] # checks on input ind ?
 
     if not ebv:
-        iref = tab['m545'] # memory waste
-        T2 = tab['T2']     # memory waste
-        sig_ref = tab['sig_m545']
+        iref = (tab['m545']).astype('float64') # memory waste
+        T2 = (tab['T2']).astype('float64')     # memory waste
+        sig_ref = (tab['sig_m545']).astype('float64')
 # ----- if nu keyword doesn't specify frequency, then assume 545 GHz desired
         vals, sig_vals = pred_spec(nu, T2, par['nu_ref'], iref, sig_ref)
     else:

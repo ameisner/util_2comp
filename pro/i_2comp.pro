@@ -52,7 +52,7 @@ function i_2comp, nu, T2, inten1=inten1, inten2=inten2, f1=f1, $
 
   nu0 = par.nu0
 
-  hk = 0.0479924335 
+  hk = 0.0479924335d
 
   T1 = get_t1(T2, q1_over_q2=q1_over_q2, beta1=beta1, beta2=beta2)
 

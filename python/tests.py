@@ -133,7 +133,7 @@ def test_one_pix_one_freq():
     pred_full = util_2comp.getval_2comp(nu=nu_test)
 
     assert pred.size == 1
-    assert pred.astype('float32') == pred_full[pix]
+    assert pred.astype('float64') == pred_full[pix]
 
 
 def test_rat_em_unc():

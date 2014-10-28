@@ -39,7 +39,7 @@ function get_t1, T2, q1_over_q2=q1_over_q2, beta1=beta1, beta2=beta2
   if ~keyword_set(beta1) then beta1 = par.beta1
   if ~keyword_set(beta2) then beta2 = par.beta2
 
-  hnu0_over_kb = 143.977300455 ; h*nu_0/k_B, MKS
+  hnu0_over_kb = 143.977300455d ; h*nu_0/k_B, MKS
 
   fac = ((1./q1_over_q2)*Z(beta2)/Z(beta1)*((hnu0_over_kb)^(beta1-beta2)))^(1/(4+beta1))
   pow = (4+beta2)/(4+beta1)

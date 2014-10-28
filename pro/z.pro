@@ -30,7 +30,7 @@
 ;----------------------------------------------------------------------
 function z, alpha, n=n
 
-  z = zeta(4+alpha, n=n)*gamma(4+alpha)
+  z = zeta(4.d + alpha, n=n)*gamma(4.d + alpha)
 
   return, z
 end

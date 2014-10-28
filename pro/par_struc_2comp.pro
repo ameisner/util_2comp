@@ -32,14 +32,14 @@ function par_struc_2comp
   fname = 'planck_2comp.fits'
 
 ; ----- Planck+DIRBE best-fit two-component model global parameters
-  f1 = 0.0485
-  q1_over_q2 = 8.219
-  beta1 = 1.63
-  beta2 = 2.82
+  f1 = 0.0485d
+  q1_over_q2 = 8.219d
+  beta1 = 1.63d
+  beta2 = 2.82d
 
-  nu0 = 2997.92458 ; GHz
+  nu0 = 2997.92458d ; GHz
 
-  nu_ref = 545. ; GHz
+  nu_ref = 545.d ; GHz
 
 ; ----- boundaries for recommended range of two-component model applicability
   nu_min = 100  ; GHz
