@@ -1,12 +1,12 @@
 ;+
 ; NAME:
-;   z
+;   z_fds
 ;
 ; PURPOSE:
 ;   compute Z(alpha), as defined in FDS99 equation 16
 ;
 ; CALLING SEQUENCE:
-;   z = z(alpha, n=)
+;   z_fds = z_fds(alpha, n=)
 ;
 ; INPUTS:
 ;   alpha - alpha, see FDS99 equation 16
@@ -28,7 +28,7 @@
 ; REVISION HISTORY:
 ;   2014-Feb-25 - Aaron Meisner
 ;----------------------------------------------------------------------
-function z, alpha, n=n
+function z_fds, alpha, n=n
 
   z = zeta(4.d + alpha, n=n)*gamma(4.d + alpha)
 
